@@ -52,6 +52,42 @@ def humanise(stem: str) -> str:
     return cleaned.title()
 
 
+def absolutise_links(body: str, notebook: Path) -> str:
+    """Point the notebook's relative file links at GitHub.
+
+    A notebook links to files next to it -- ``./systems.py``,
+    ``../../src/agentic_ai/...``. Those paths are correct in Jupyter and
+    meaningless on a website, where they resolve to routes that do not exist.
+
+    Rewriting them to absolute GitHub URLs is the right answer rather than a
+    workaround: a reader on the site genuinely wants to see the file on GitHub,
+    and it keeps `onBrokenLinks: 'throw'` able to do its job on the links that
+    actually matter.
+    """
+    notebook_dir = notebook.parent.relative_to(REPO_ROOT)
+
+    def rewrite(match: re.Match[str]) -> str:
+        label, target = match.group(1), match.group(2)
+        if re.match(r"^(https?:|mailto:|#|/)", target):
+            return match.group(0)
+        anchor = ""
+        if "#" in target:
+            target, _, anchor = target.partition("#")
+            anchor = f"#{anchor}"
+        resolved = (notebook_dir / target).as_posix()
+        # Collapse any ../ segments without touching the filesystem.
+        parts: list[str] = []
+        for part in resolved.split("/"):
+            if part == "..":
+                if parts:
+                    parts.pop()
+            elif part not in ("", "."):
+                parts.append(part)
+        return f"[{label}]({GITHUB_BLOB}/{'/'.join(parts)}{anchor})"
+
+    return re.sub(r"\[([^\]]*)\]\(([^)\s]+)\)", rewrite, body)
+
+
 def convert(notebook: Path) -> str:
     """Convert one notebook to Markdown using nbconvert."""
     import nbformat
@@ -63,7 +99,7 @@ def convert(notebook: Path) -> str:
     exporter.exclude_input_prompt = True
     exporter.exclude_output_prompt = True
     body, _resources = exporter.from_notebook_node(nb)
-    return str(body)
+    return absolutise_links(str(body), notebook)
 
 
 def main() -> int:

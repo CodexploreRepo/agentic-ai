@@ -14,7 +14,11 @@ const config: Config = {
   baseUrl: '/agentic-ai/',
   organizationName: 'CodexploreRepo',
   projectName: 'agentic-ai',
-  trailingSlash: false,
+  // true emits every page as <path>/index.html. GitHub Pages serves those
+  // for both /path/ and /path (301), whereas `false` emits <path>.html and
+  // hard-404s any link written with a trailing slash. Docusaurus's broken
+  // link checker normalises both forms, so it will not catch that for you.
+  trailingSlash: true,
 
   // A broken internal link is a broken promise to a reader who arrived from a
   // video description. Fail the build instead of shipping one.
@@ -50,6 +54,10 @@ const config: Config = {
         docs: {
           path: '../docs',
           routeBasePath: '/',
+          // Module numbers are semantic, not just ordering sugar: the URL
+          // /modules/01-foundations/ is what video descriptions link to. The
+          // default parser would strip "01-" and silently change every route.
+          numberPrefixParser: false,
           sidebarPath: './sidebars.ts',
           editUrl: 'https://github.com/CodexploreRepo/agentic-ai/tree/main/docs/',
           showLastUpdateTime: true,
