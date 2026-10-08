@@ -72,11 +72,13 @@ class GeminiClient:
 
         model_id = model or DEFAULT_MODEL["google"]
         try:
+            # The SDK types both arguments as unions of TypedDicts and model
+            # classes. We build plain dicts, because which keys apply depends on
+            # the call -- the shapes are correct at runtime, so cast rather than
+            # contort the builders into the SDK's type algebra.
             response = self._client.models.generate_content(
                 model=model_id,
-                contents=_to_gemini_contents(rest),
-                # The SDK types this as a TypedDict; we build it dynamically
-                # because which keys apply depends on the call.
+                contents=cast(Any, _to_gemini_contents(rest)),
                 config=cast(Any, config),
             )
         except Exception as exc:  # re-raised as ProviderError so callers catch one type

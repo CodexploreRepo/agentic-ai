@@ -26,7 +26,7 @@ frameworks as a later chapter you can take or leave.
 
 | # | Module | You'll be able to |
 |---|---|---|
-| 01 | [Foundations & the evals mindset](docs/modules/01-foundations/) | Tell an agent from a workflow, decompose a task, and prove a change helped |
+| 01 | [Foundations & the evals mindset](docs/modules/01-foundations/index.mdx) | Tell an agent from a workflow, decompose a task, and prove a change helped |
 | 02 | Reflection | Make a system critique and improve its own output |
 | 03 | Tool use & code execution | Give an agent hands, safely |
 | 04 | Evaluation & error analysis | Find the one broken component instead of guessing |
@@ -61,11 +61,11 @@ Full setup notes, including cost control: [`docs/start-here/setup.md`](docs/star
 
 ## Two ways to use this
 
-- **Following the series?** Start at [Module 01](docs/modules/01-foundations/) and go in order.
+- **Following the series?** Start at [Module 01](docs/modules/01-foundations/index.mdx) and go in order.
   Each module is one video, one doc set, one notebook.
 - **Landed here from a search?** Go straight to the reference section — the
-  [pattern catalogue](docs/patterns/), [building blocks](docs/building-blocks/),
-  [evaluation](docs/evaluation/), [production](docs/production/), and [safety](docs/safety/)
+  [pattern catalogue](docs/patterns/index.md), [building blocks](docs/building-blocks/models.md),
+  [evaluation](docs/evaluation/eval-driven-development.md), [production](docs/production/architecture.md), and [safety](docs/safety/guardrails.md)
   pages stand alone and cross-link back to the module that teaches them.
 
 ## Contributing

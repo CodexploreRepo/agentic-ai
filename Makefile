@@ -38,7 +38,12 @@ format: ## Autoformat and autofix
 test: ## Unit tests. No API keys, no network, no spend
 	$(PY) pytest tests -q
 
-check: lint test ## Everything CI runs
+# Syncs the labs extra first, deliberately. mypy sees more type information
+# when the optional dependencies are installed, so an environment without them
+# can pass locally and fail in CI -- which is exactly what happened once.
+check: ## Everything CI runs, in CI's environment
+	uv sync --extra labs
+	$(MAKE) lint test
 
 # --- labs -----------------------------------------------------------------
 # These call real model APIs and cost real money.
