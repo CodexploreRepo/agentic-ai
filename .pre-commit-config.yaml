@@ -1,0 +1,44 @@
+# Run on every commit. Install with `make setup`.
+#
+# The first hook is the important one: it blocks third-party course material
+# from entering the repository. See ATTRIBUTION.md.
+
+repos:
+  - repo: local
+    hooks:
+      - id: no-course-files
+        name: block third-party course material
+        entry: python3 tools/check_no_course_files.py
+        language: system
+        pass_filenames: false
+        always_run: true
+
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+        exclude: ^docs-site/
+      - id: end-of-file-fixer
+        exclude: ^docs-site/
+      - id: check-yaml
+      - id: check-toml
+      - id: check-merge-conflict
+      - id: check-added-large-files
+        args: ["--maxkb=512"]
+      - id: detect-private-key
+      - id: mixed-line-ending
+
+  - repo: https://github.com/astral-sh/ruff-pre-commit
+    rev: v0.8.4
+    hooks:
+      - id: ruff
+        args: [--fix]
+      - id: ruff-format
+
+  - repo: https://github.com/kynan/nbstripout
+    rev: 0.8.1
+    hooks:
+      # Notebook outputs make diffs unreadable and leak API responses. The
+      # published versions of notebooks are rendered by tools/nb2md.py from a
+      # local `make labs-exec` run, so nothing of value is lost here.
+      - id: nbstripout

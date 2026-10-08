@@ -1,0 +1,61 @@
+---
+title: "Module 07 — MCP & integrations"
+description: Connect agents to real systems over a standard protocol, and understand the trust boundary you just created.
+sidebar_label: "07 · MCP & integrations"
+---
+
+# Module 07 — MCP & integrations
+
+<WatchReadCode read="/building-blocks/mcp" />
+
+<YouTube title="Module 07 — MCP & integrations" />
+
+:::note[Outline]
+This module's brief is written; its pages, lab and eval set land with the
+video. The outcomes and reading list below are firm — useful already if you
+are planning what to study.
+:::
+
+Connect agents to real systems over a standard protocol, and understand the trust boundary you just created.
+
+## What you will be able to do
+
+- Explain what MCP solves and what it does not
+- Write an MCP server, and judge when an in-process tool is the better choice
+- Consume third-party servers while treating them as third-party code holding your credentials
+- Recognise tool poisoning and tool shadowing
+- Place Agent Skills alongside MCP without confusing the two
+
+## Prerequisites
+
+[Module 06](/modules/06-memory-context/) and a working [setup](/start-here/setup).
+
+## Read
+
+- [MCP](/building-blocks/mcp)
+- [Tools and function calling](/building-blocks/tools-and-function-calling)
+- [Prompt injection](/safety/prompt-injection)
+
+## Build
+
+**Lab 07 — Build and consume an MCP server**
+
+Expose the channel-analytics database as an MCP server, consume it from the Module 01 agent, then attack your own setup with a poisoned tool description and watch what the agent does.
+
+## Takeaways this module is built around
+
+1. MCP turns N agents times M integrations into N plus M
+2. A third-party MCP server is third-party code running with your credentials
+3. Skills package know-how; MCP connects to systems. Different problems
+
+## Next
+
+[Module 08 — Observability & production](/modules/08-observability-production/)
+
+## Sources
+
+- Model Context Protocol specification
+- Anthropic engineering, *Equipping agents for the real world with Agent Skills*
+- Koenigstein, *AI Agents*, ch. 5
+
+All prose and code original — see [attribution](/references/attribution).

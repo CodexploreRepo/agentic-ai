@@ -1,0 +1,61 @@
+---
+title: "Module 06 — Memory & context engineering"
+description: Keep an agent coherent past its context window, without filling the window with noise.
+sidebar_label: "06 · Memory & context"
+---
+
+# Module 06 — Memory & context engineering
+
+<WatchReadCode read="/building-blocks/memory-and-state" />
+
+<YouTube title="Module 06 — Memory & context engineering" />
+
+:::note[Outline]
+This module's brief is written; its pages, lab and eval set land with the
+video. The outcomes and reading list below are firm — useful already if you
+are planning what to study.
+:::
+
+Keep an agent coherent past its context window, without filling the window with noise.
+
+## What you will be able to do
+
+- Distinguish the four things called memory, and pick the right one for a requirement
+- Budget a context window across instructions, tools, retrieval and history
+- Compact a long conversation and detect when compaction dropped something load-bearing
+- Decide a write policy: what is actually worth remembering across runs
+- Exploit prompt caching by designing stable prefixes
+
+## Prerequisites
+
+[Module 05](/modules/05-planning-multi-agent/) and a working [setup](/start-here/setup).
+
+## Read
+
+- [Memory and state](/building-blocks/memory-and-state)
+- [Context engineering](/building-blocks/context-engineering)
+- [Retrieval for agents](/building-blocks/retrieval-for-agents)
+
+## Build
+
+**Lab 06 — An agent that survives a hundred turns**
+
+Take a support agent through a conversation far longer than its context window. Add summarisation, then retrieval over the transcript, then durable user facts — measuring at each step whether the agent still answers correctly about turn 3.
+
+## Takeaways this module is built around
+
+1. 'Add memory' is not a task until you say which of the four you mean
+2. Tool output is the main uncontrolled consumer of a context window
+3. A poisoned memory persists across runs, which makes memory an attack surface
+
+## Next
+
+[Module 07 — MCP & integrations](/modules/07-mcp-integrations/)
+
+## Sources
+
+- Anthropic engineering, *Effective context engineering for AI agents*
+- *Anatomy of Agentic Memory* (arXiv:2602.19320)
+- Koenigstein, *AI Agents*, ch. 3-4
+
+All prose and code original — see [attribution](/references/attribution).

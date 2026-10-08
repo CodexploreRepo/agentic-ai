@@ -1,0 +1,151 @@
+# Eval set for Lab 01 -- the video research brief agent.
+#
+# Twelve cases. Deliberately small: ten to fifteen REAL cases beat a hundred
+# generated ones, because generated cases encode what you think breaks.
+#
+# Tags slice the results. The interesting question is never "what is the overall
+# score" but "which KIND of request does this fail on" -- a system at 75%
+# overall might be 100% on definitions and 20% on anything needing current
+# information, and those are completely different problems.
+#
+#   current     needs information newer than the model's training data
+#   definition  a concept explained correctly
+#   comparison  two things weighed against each other
+#   obscure     deliberately thin sources -- tests whether it admits uncertainty
+#   easy        should obviously work; catches regressions from fixing hard cases
+
+name: video-briefs
+cases:
+  # --- definition: the model may know these, so they test grounding and
+  # citation discipline rather than retrieval ---------------------------------
+  - id: vb-01
+    input: >
+      Explain the Model Context Protocol for a backend developer who has
+      never used an AI agent.
+    expect_contains: ["Model Context Protocol"]
+    expect_absent: ["As an AI language model", "I cannot browse"]
+    rubric: >
+      States the problem MCP solves (integration fan-out between agents and
+      tools), names at least two MCP primitives, and cites at least one source
+      URL. Pitched at a backend developer: no hand-waving about "AI magic",
+      and no assumption of prior agent knowledge.
+    tags: [definition, easy]
+
+  - id: vb-02
+    input: >
+      What is prompt injection and why can't it be fixed by telling the model
+      to ignore injected instructions?
+    expect_contains: ["injection"]
+    rubric: >
+      Explains that instructions and data share one channel so the model cannot
+      reliably separate them. Explicitly addresses why instruction-level
+      defences fail. Does NOT claim the problem is solved by any single
+      mitigation. Cites a source.
+    tags: [definition]
+
+  - id: vb-03
+    input: Explain what an agent loop is, in terms a Python developer would recognise.
+    expect_contains: ["loop"]
+    rubric: >
+      Describes the model-decides / tool-runs / observe cycle and that it
+      terminates when the model stops requesting tools. Mentions a step limit
+      or some bound. Concrete rather than abstract.
+    tags: [definition, easy]
+
+  # --- current: these genuinely require retrieval. A system with no tools
+  # should fail or hedge here, which is the point ------------------------------
+  - id: vb-04
+    input: >
+      What changed in the agentic AI tooling landscape in the last six months
+      that a developer should know about?
+    expect_absent: ["my training data", "I don't have access to"]
+    rubric: >
+      Names specific, checkable developments with dates or versions, each tied
+      to a cited source. Vague trend-talk ("agents are becoming more capable")
+      fails. If the sources are thin, says so rather than padding.
+    tags: [current]
+
+  - id: vb-05
+    input: >
+      Is Material for MkDocs still the right choice for a new documentation
+      site, or has something replaced it?
+    rubric: >
+      Identifies the current maintenance status rather than assuming the
+      long-standing recommendation still holds, and names the successor or
+      alternatives. Cites a source for the status claim. This case exists to
+      catch a system that answers confidently from stale training data.
+    tags: [current, comparison]
+
+  - id: vb-06
+    input: What are the current pricing tiers for the major frontier model APIs?
+    rubric: >
+      Gives figures with units (per million tokens) and attributes each to a
+      source. States when the figures were retrieved. Does not present
+      remembered numbers as current.
+    tags: [current]
+
+  # --- comparison: tests synthesis across sources, not just retrieval --------
+  - id: vb-07
+    input: >
+      Compare building an agent on a framework versus calling the model API
+      directly. When is each the right call?
+    rubric: >
+      Gives a genuine trade-off in both directions with concrete criteria for
+      choosing. Does not conclude that one is simply better. Cites at least two
+      sources with different perspectives.
+    tags: [comparison]
+
+  - id: vb-08
+    input: >
+      Should a small team use a multi-agent architecture or a single
+      well-prompted agent?
+    rubric: >
+      Argues that the communication pattern and the subtask differences matter
+      more than agent count, and identifies the costs of multi-agent setups
+      (latency, cost, correlated failure). Does not simply advocate for
+      multi-agent because it sounds advanced.
+    tags: [comparison]
+
+  - id: vb-09
+    input: Compare LLM-as-judge against deterministic checks for evaluating agent output.
+    rubric: >
+      Establishes that these are complementary rather than competing, names a
+      concrete weakness of judges (agreeableness, position or verbosity bias),
+      and says when each is appropriate.
+    tags: [comparison, definition]
+
+  # --- obscure: the honest-uncertainty test. A system that confabulates a
+  # confident answer here is more dangerous than one that fails loudly --------
+  - id: vb-10
+    input: >
+      What is the documented production adoption rate of agentic AI systems
+      among Vietnamese small and medium enterprises in 2026?
+    rubric: >
+      States clearly that reliable data for this specific question could not be
+      found, and does not invent statistics, surveys, or percentages. Partial
+      credit for naming adjacent data and labelling it as adjacent. Any
+      specific-sounding figure without a working source is an automatic fail.
+    tags: [obscure]
+
+  - id: vb-11
+    input: >
+      Summarise the consensus view on the optimal number of reflection rounds
+      for agentic document writing.
+    rubric: >
+      Recognises that no such consensus exists and that the answer is
+      task-dependent and empirical. Does not manufacture a number. Explaining
+      how one would determine it for a given task earns full credit.
+    tags: [obscure]
+
+  # --- easy: a sanity floor. If a change for the hard cases breaks this, the
+  # change is wrong, and without this case you would not notice ---------------
+  - id: vb-12
+    input: >
+      Give me three concrete topic ideas for a tutorial video about AI agents
+      aimed at working software developers.
+    expect_absent: ["As an AI language model"]
+    rubric: >
+      Three distinct, specific, buildable topics -- not generic titles like
+      "Introduction to AI Agents". Each should suggest what would actually be
+      demonstrated on screen.
+    tags: [easy]

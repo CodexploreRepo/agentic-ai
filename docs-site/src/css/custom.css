@@ -1,0 +1,246 @@
+/**
+ * Site styling.
+ *
+ * Deliberately restrained: this is a reading site, so the work goes into
+ * measure, contrast and code legibility rather than decoration. Colours are
+ * defined once as tokens and redefined for dark mode.
+ */
+
+:root {
+  --ifm-color-primary: #1d6f5c;
+  --ifm-color-primary-dark: #1a6453;
+  --ifm-color-primary-darker: #185e4e;
+  --ifm-color-primary-darkest: #144d40;
+  --ifm-color-primary-light: #207a65;
+  --ifm-color-primary-lighter: #22806a;
+  --ifm-color-primary-lightest: #269178;
+
+  --ifm-code-font-size: 90%;
+  --ifm-font-size-base: 17px;
+  --ifm-line-height-base: 1.7;
+  --ifm-heading-font-weight: 650;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.08);
+
+  --surface: #f6f8f7;
+  --surface-border: #dfe5e2;
+  --muted: #5b6b66;
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #4fd1ab;
+  --ifm-color-primary-dark: #35c99f;
+  --ifm-color-primary-darker: #2bc298;
+  --ifm-color-primary-darkest: #23a07e;
+  --ifm-color-primary-light: #69d9b7;
+  --ifm-color-primary-lighter: #76ddbd;
+  --ifm-color-primary-lightest: #99e6cd;
+
+  --docusaurus-highlighted-code-line-bg: rgba(255, 255, 255, 0.1);
+  --surface: #1c2322;
+  --surface-border: #2f3a37;
+  --muted: #9aaba5;
+}
+
+/* Long-form reading: cap the measure so lines stay scannable. */
+.markdown > p,
+.markdown > ul,
+.markdown > ol,
+.markdown > blockquote {
+  max-width: 44rem;
+}
+
+.markdown h2 {
+  margin-top: 2.6rem;
+  padding-top: 0.6rem;
+  border-top: 1px solid var(--surface-border);
+}
+
+.markdown blockquote {
+  border-left: 3px solid var(--ifm-color-primary);
+  background: var(--surface);
+  color: inherit;
+}
+
+/* --- Watch / Read / Code header ---------------------------------------- */
+
+.wrc {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(10rem, 1fr));
+  gap: 0.75rem;
+  margin: 1.5rem 0 2rem;
+}
+
+.wrc-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  padding: 0.8rem 1rem;
+  border: 1px solid var(--surface-border);
+  border-radius: 10px;
+  background: var(--surface);
+  text-decoration: none !important;
+  color: inherit;
+  transition: border-color 0.15s ease, transform 0.15s ease;
+}
+
+.wrc-item:hover {
+  border-color: var(--ifm-color-primary);
+  transform: translateY(-1px);
+}
+
+.wrc-item strong {
+  display: block;
+  font-size: 0.95rem;
+}
+
+.wrc-item small {
+  display: block;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+.wrc-icon {
+  font-size: 1.15rem;
+  line-height: 1;
+}
+
+.wrc-disabled {
+  opacity: 0.55;
+  cursor: default;
+}
+
+.wrc-disabled:hover {
+  border-color: var(--surface-border);
+  transform: none;
+}
+
+/* --- Video embed -------------------------------------------------------- */
+
+.video-frame,
+.video-placeholder {
+  margin: 1.5rem 0 2rem;
+  border-radius: 10px;
+  overflow: hidden;
+}
+
+.video-frame {
+  position: relative;
+  aspect-ratio: 16 / 9;
+  background: #000;
+}
+
+.video-frame iframe,
+.video-poster {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  border: 0;
+}
+
+.video-poster {
+  padding: 0;
+  cursor: pointer;
+  background: #000;
+}
+
+.video-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  opacity: 0.85;
+}
+
+.video-play {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 4.5rem;
+  height: 3.1rem;
+  transform: translate(-50%, -50%);
+  border-radius: 12px;
+  background: #ff0000;
+}
+
+.video-play::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 54%;
+  transform: translate(-50%, -50%);
+  border-style: solid;
+  border-width: 0.6rem 0 0.6rem 1rem;
+  border-color: transparent transparent transparent #fff;
+}
+
+.video-placeholder {
+  padding: 1rem 1.2rem;
+  border: 1px dashed var(--surface-border);
+  background: var(--surface);
+  color: var(--muted);
+  font-size: 0.92rem;
+}
+
+/* --- Status badges ------------------------------------------------------ */
+
+.status-row {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  margin-top: -0.4rem;
+  font-size: 0.82rem;
+}
+
+.status {
+  padding: 0.15rem 0.55rem;
+  border-radius: 999px;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 0.7rem;
+}
+
+.status-complete {
+  background: rgba(29, 111, 92, 0.14);
+  color: var(--ifm-color-primary);
+}
+
+.status-draft {
+  background: rgba(195, 135, 20, 0.16);
+  color: #a9761a;
+}
+
+[data-theme='dark'] .status-draft {
+  color: #e0ae4d;
+}
+
+.status-planned {
+  background: rgba(120, 120, 120, 0.16);
+  color: var(--muted);
+}
+
+.status-module {
+  color: var(--muted);
+}
+
+/* Tables carry a lot of this site's decision content; let them breathe. */
+.markdown table {
+  display: table;
+  width: 100%;
+  font-size: 0.93rem;
+}
+
+.markdown table th {
+  text-align: left;
+}
+
+@media (max-width: 720px) {
+  :root {
+    --ifm-font-size-base: 16px;
+  }
+
+  .markdown table {
+    display: block;
+    overflow-x: auto;
+  }
+}

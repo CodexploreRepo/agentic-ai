@@ -1,0 +1,80 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+concurrency:
+  group: ci-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  python:
+    name: Lint, type-check, test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Install dependencies
+        run: uv sync --extra labs
+
+      - name: Ruff
+        run: |
+          uv run ruff check src tests tools
+          uv run ruff format --check src tests tools
+
+      - name: Mypy
+        run: uv run mypy src tools
+
+      # No API keys are configured for CI on purpose. Every test uses a fake
+      # LLM client, so the suite is free, fast, and deterministic. A test that
+      # needs a real provider is marked `live` and deselected here.
+      - name: Tests
+        run: uv run pytest tests -q -m "not live"
+
+  ip-guard:
+    name: No third-party course material
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      # The pre-commit hook can be skipped locally with --no-verify, so the
+      # same check runs here against every file in the tree.
+      - name: Scan tracked files
+        run: python3 tools/check_no_course_files.py --all
+
+  site:
+    name: Build site
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: docs-site/package-lock.json
+
+      - name: Install uv
+        uses: astral-sh/setup-uv@v5
+        with:
+          enable-cache: true
+
+      - name: Render notebooks into docs
+        run: |
+          uv sync
+          uv run python tools/nb2md.py
+
+      - name: Build
+        working-directory: docs-site
+        run: |
+          npm ci
+          npm run build

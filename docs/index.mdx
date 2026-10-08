@@ -1,0 +1,88 @@
+---
+title: Agentic AI
+description: A written curriculum and reference library for building AI agents that survive production.
+slug: /
+hide_title: true
+---
+
+# Agentic AI
+
+**Build agents that survive production.** A written curriculum and a reference
+library, companion to the [CodeXplore](https://www.youtube.com/@CodeXplore)
+video series.
+
+This site is built around one opinion, borrowed from Anthropic and earned the
+hard way:
+
+> Most agent problems are solved by simple, composable patterns, not by
+> frameworks.
+
+So the code here teaches the primitives — an agent loop you can read in one
+sitting — and treats frameworks as a later chapter you can take or leave.
+
+## Two ways in
+
+<div className="wrc">
+  <a className="wrc-item" href="/agentic-ai/modules/01-foundations/">
+    <span className="wrc-icon">🎓</span>
+    <span>
+      <strong>Follow the series</strong>
+      <small>Start at Module 01 and go in order</small>
+    </span>
+  </a>
+  <a className="wrc-item" href="/agentic-ai/patterns/">
+    <span className="wrc-icon">🔍</span>
+    <span>
+      <strong>Look something up</strong>
+      <small>Reference pages that stand alone</small>
+    </span>
+  </a>
+</div>
+
+If you arrived from a search engine wanting one answer about one pattern, the
+reference section is yours and you do not need to know which module taught it.
+If you are working through the series, the modules are the path.
+
+## The curriculum
+
+| # | Module | You will be able to |
+|---|---|---|
+| 01 | [Foundations & the evals mindset](/modules/01-foundations/) | Tell an agent from a workflow, decompose a task, and prove a change helped |
+| 02 | [Reflection](/modules/02-reflection/) | Make a system critique and improve its own output |
+| 03 | [Tool use & code execution](/modules/03-tool-use/) | Give an agent hands, safely |
+| 04 | [Evaluation & error analysis](/modules/04-evaluation/) | Find the one broken component instead of guessing |
+| 05 | [Planning & multi-agent](/modules/05-planning-multi-agent/) | Decide when more agents help, and when they just add latency |
+| 06 | [Memory & context engineering](/modules/06-memory-context/) | Keep an agent coherent past its context window |
+| 07 | [MCP & integrations](/modules/07-mcp-integrations/) | Connect agents to real systems over a standard protocol |
+| 08 | [Observability & production](/modules/08-observability-production/) | See what your agent did, and what it cost |
+| 09 | [Safety, guardrails & security](/modules/09-safety-security/) | Survive prompt injection and untrusted tool output |
+
+Modules 01–05 follow the concept order of
+[DeepLearning.AI's *Agentic AI* course](https://www.deeplearning.ai/courses/agentic-ai)
+— take it, it is good. Modules 06–09 cover the production ground that courses
+usually skip.
+
+All prose and code here is original. See
+[attribution](/references/attribution) for how that is kept true, and what
+every page owes to its sources.
+
+## Start reading
+
+- [How to use this repo](/start-here/how-to-use-this-repo) — the three-part structure
+- [Setup](/start-here/setup) — `uv`, one API key, and cost control
+- [Learning paths](/start-here/learning-paths) — if you have a weekend, or a month
+
+Or jump straight to the ideas that change how you build:
+
+- [What is an agent?](/foundations/what-is-an-agent) — the control-flow distinction
+- [Eval-driven development](/evaluation/eval-driven-development) — why the eval set comes first
+- [When not to use agents](/foundations/when-not-to-use-agents) — the honest counterweight
+
+## Status
+
+This site publishes its outline before its prose. Pages are marked
+**Reference page** when written and reviewed, and **Outline** when they list
+their headings and sources but not yet the text. A reader who lands on a thin
+page deserves to know it is thin rather than concluding the subject is.
+
+Module 01 is complete. Modules 02–09 arrive with their videos.

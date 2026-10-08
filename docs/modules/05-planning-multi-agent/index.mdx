@@ -1,0 +1,62 @@
+---
+title: "Module 05 — Planning & multi-agent systems"
+description: Decide when more structure helps, and when it just adds latency.
+sidebar_label: "05 · Planning & teams"
+---
+
+# Module 05 — Planning & multi-agent systems
+
+<WatchReadCode read="/patterns/planning" />
+
+<YouTube title="Module 05 — Planning & multi-agent systems" />
+
+:::note[Outline]
+This module's brief is written; its pages, lab and eval set land with the
+video. The outcomes and reading list below are firm — useful already if you
+are planning what to study.
+:::
+
+Decide when more structure helps, and when it just adds latency.
+
+## What you will be able to do
+
+- Build an explicit planner and compare it against the implicit planning the agent loop already does
+- Choose a replanning trigger that is not 'every step'
+- Build a router, and notice how often it replaces an agent entirely
+- Build a supervisor-and-workers team, and measure whether it beat one agent
+
+## Prerequisites
+
+[Module 04](/modules/04-evaluation/) and a working [setup](/start-here/setup).
+
+## Read
+
+- [Planning](/patterns/planning)
+- [Routing](/patterns/routing)
+- [Multi-agent systems](/patterns/multi-agent)
+- [Human in the loop](/patterns/human-in-the-loop)
+
+## Build
+
+**Lab 05 — One agent versus a team, on the same eval set**
+
+Build a tech-news digest three ways: one agent with all the tools, a router plus specialists, and a supervisor with a researcher and a writer. Same eval set, same cases. Compare pass rate, cost and p50 latency.
+
+## Takeaways this module is built around
+
+1. Communication pattern is the design decision; agent count is not
+2. Agents built on one model fail in correlated ways — they agree confidently and wrongly
+3. Routing is often the honest answer to a request for 'an agent'
+
+## Next
+
+[Module 06 — Memory & context engineering](/modules/06-memory-context/)
+
+## Sources
+
+- DeepLearning.AI *Agentic AI*, module 5
+- Anthropic, *Building Effective Agents* — orchestrator-workers
+- Zhou et al., *Language Agent Tree Search* (arXiv:2310.04406)
+- Koenigstein, *AI Agents*, ch. 2-3
+
+All prose and code original — see [attribution](/references/attribution).

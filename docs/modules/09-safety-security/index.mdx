@@ -1,0 +1,64 @@
+---
+title: "Module 09 — Safety, guardrails & security"
+description: Survive prompt injection, untrusted tool output, and your own agent's enthusiasm.
+sidebar_label: "09 · Safety & security"
+---
+
+# Module 09 — Safety, guardrails & security
+
+<WatchReadCode read="/safety/guardrails" />
+
+<YouTube title="Module 09 — Safety, guardrails & security" />
+
+:::note[Outline]
+This module's brief is written; its pages, lab and eval set land with the
+video. The outcomes and reading list below are firm — useful already if you
+are planning what to study.
+:::
+
+Survive prompt injection, untrusted tool output, and your own agent's enthusiasm.
+
+## What you will be able to do
+
+- Place input, output and action guardrails, and enforce them outside the model
+- Explain the lethal trifecta and remove one leg of it from a real design
+- Scope credentials per tool and per tenant
+- Score a task on reversibility, blast radius and detectability, then set its autonomy level
+- Write the pre-launch checklist and the incident runbook
+
+## Prerequisites
+
+[Module 08](/modules/08-observability-production/) and a working [setup](/start-here/setup).
+
+## Read
+
+- [Guardrails](/safety/guardrails)
+- [Prompt injection](/safety/prompt-injection)
+- [Sandboxing and permissions](/safety/sandboxing-and-permissions)
+- [A risk framework](/safety/risk-framework)
+- [Human in the loop](/patterns/human-in-the-loop)
+
+## Build
+
+**Lab 09 — Attack your own agent**
+
+Run an indirect prompt injection against the Module 01 research agent via a page it fetches. Succeed. Then redesign so the same attack still succeeds at the model layer and no longer matters at the system layer — which is the only durable mitigation.
+
+## Takeaways this module is built around
+
+1. A guardrail the model can talk its way past is not a guardrail
+2. Content marking is a mitigation, not a fix
+3. Design so a successful injection is survivable, because some will succeed
+
+## Next
+
+That is the curriculum. From here: the [capstone projects](/projects/), or the [framework comparison](/frameworks/comparison) to see the same agent built four ways.
+
+## Sources
+
+- Simon Willison on prompt injection and the lethal trifecta
+- OWASP Top 10 for LLM Applications
+- Koenigstein, *AI Agents*, ch. 9
+- OpenAI, *A Practical Guide to Building Agents* — guardrails
+
+All prose and code original — see [attribution](/references/attribution).

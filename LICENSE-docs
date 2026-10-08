@@ -1,0 +1,18 @@
+Creative Commons Attribution 4.0 International (CC BY 4.0)
+
+Copyright (c) 2026 CodeXplore
+
+The prose knowledge base in `docs/` is licensed under CC BY 4.0.
+You are free to share and adapt it, including commercially, provided you give
+appropriate credit, link to the license, and indicate if changes were made.
+
+Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+Scope note
+----------
+This license covers the original prose written for this repository. It does NOT
+cover third-party material that is quoted, cited, or linked from these pages;
+such material remains under its own terms. See ATTRIBUTION.md.
+
+Code (everything outside `docs/`, including `src/`, `labs/`, `projects/`,
+`tools/`, and `tests/`) is licensed under the MIT License -- see LICENSE.

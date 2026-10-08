@@ -1,0 +1,61 @@
+---
+title: "Module 02 — Reflection"
+description: Make a system critique and improve its own output — then check whether the second draft is actually better.
+sidebar_label: "02 · Reflection"
+---
+
+# Module 02 — Reflection
+
+<WatchReadCode read="/patterns/reflection" />
+
+<YouTube title="Module 02 — Reflection" />
+
+:::note[Outline]
+This module's brief is written; its pages, lab and eval set land with the
+video. The outcomes and reading list below are firm — useful already if you
+are planning what to study.
+:::
+
+Make a system critique and improve its own output — then check whether the second draft is actually better.
+
+## What you will be able to do
+
+- Build a generator/critic loop where the critic has real leverage, not just a different prompt
+- Wire an external signal (a linter, a failing test, a SQL error) in as the critic
+- Decide when to stop revising, instead of running a fixed number of rounds
+- Measure whether reflection earned its 2-3x cost on your eval set
+
+## Prerequisites
+
+[Module 01](/modules/01-foundations/) and a working [setup](/start-here/setup).
+
+## Read
+
+- [Reflection](/patterns/reflection)
+- [Prompting for agents](/building-blocks/prompting-for-agents)
+- [Pattern catalogue](/patterns/)
+
+## Build
+
+**Lab 02 — A SQL analyst that fixes its own queries**
+
+Generate SQL against a channel-analytics schema, run it, and feed the database's own error messages back as the critic. The database is a perfect critic: it is never agreeable.
+
+## Takeaways this module is built around
+
+1. Self-critique with no new information mostly produces agreeable noise
+2. An external signal beats a self-assessment every time it is available
+3. Fixed-round loops spend money making drafts different rather than better
+
+## Next
+
+[Module 03 — Tool use & code execution](/modules/03-tool-use/)
+
+## Sources
+
+- Shinn et al., *Reflexion* (arXiv:2303.11366)
+- Madaan et al., *Self-Refine* (arXiv:2303.17651)
+- DeepLearning.AI *Agentic AI*, module 2
+- Anthropic, *Building Effective Agents* — evaluator-optimizer
+
+All prose and code original — see [attribution](/references/attribution).

@@ -1,0 +1,63 @@
+---
+title: "Module 03 — Tool use & code execution"
+description: Give an agent hands, and keep them where you can see them.
+sidebar_label: "03 · Tool use"
+---
+
+# Module 03 — Tool use & code execution
+
+<WatchReadCode read="/patterns/tool-use" />
+
+<YouTube title="Module 03 — Tool use & code execution" />
+
+:::note[Outline]
+This module's brief is written; its pages, lab and eval set land with the
+video. The outcomes and reading list below are firm — useful already if you
+are planning what to study.
+:::
+
+Give an agent hands, and keep them where you can see them.
+
+## What you will be able to do
+
+- Write tool descriptions that actually drive correct selection
+- Derive schemas from type hints so the two halves cannot drift
+- Handle tool errors as a recovery channel rather than a crash
+- Run model-written code without handing over your machine
+- Measure tool-selection accuracy as its own component metric
+
+## Prerequisites
+
+[Module 02](/modules/02-reflection/) and a working [setup](/start-here/setup).
+
+## Read
+
+- [Tool use](/patterns/tool-use)
+- [Tools and function calling](/building-blocks/tools-and-function-calling)
+- [Structured outputs](/building-blocks/structured-outputs)
+- [Sandboxing and permissions](/safety/sandboxing-and-permissions)
+
+## Build
+
+**Lab 03 — An agent with a dangerous tool**
+
+Add a Python execution tool to the Module 01 agent, then progressively contain it: subprocess, resource limits, filesystem policy, network policy. Each step is measured against an eval set that includes a case designed to escape.
+
+## Takeaways this module is built around
+
+1. A tool description is prompt, not documentation
+2. Few broad tools beat many narrow ones for selection accuracy, up to a point you can measure
+3. Code execution is the most useful tool and the one that demands the most containment
+
+## Next
+
+[Module 04 — Evaluation & error analysis](/modules/04-evaluation/)
+
+## Sources
+
+- Yao et al., *ReAct* (arXiv:2210.03629)
+- Provider tool-use documentation
+- DeepLearning.AI *Agentic AI*, module 3
+- Koenigstein, *AI Agents*, ch. 5
+
+All prose and code original — see [attribution](/references/attribution).

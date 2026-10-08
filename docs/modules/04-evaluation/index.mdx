@@ -1,0 +1,63 @@
+---
+title: "Module 04 — Evaluation & error analysis"
+description: Find the one broken component instead of guessing, and stop paying for the fix you did not need.
+sidebar_label: "04 · Evaluation"
+---
+
+# Module 04 — Evaluation & error analysis
+
+<WatchReadCode read="/evaluation/eval-driven-development" />
+
+<YouTube title="Module 04 — Evaluation & error analysis" />
+
+:::note[Outline]
+This module's brief is written; its pages, lab and eval set land with the
+video. The outcomes and reading list below are firm — useful already if you
+are planning what to study.
+:::
+
+Find the one broken component instead of guessing, and stop paying for the fix you did not need.
+
+## What you will be able to do
+
+- Run a real error analysis: read twenty failures, group them, count the groups, fix the biggest
+- Build component evals for retrieval, tool selection and synthesis separately
+- Write an LLM judge that is hard to flatter, and validate it against your own labels
+- Optimise cost and latency without guessing which step is expensive
+
+## Prerequisites
+
+[Module 03](/modules/03-tool-use/) and a working [setup](/start-here/setup).
+
+## Read
+
+- [Eval-driven development](/evaluation/eval-driven-development)
+- [Error analysis](/evaluation/error-analysis)
+- [Component vs end-to-end](/evaluation/component-vs-end-to-end)
+- [LLM as judge](/evaluation/llm-as-judge)
+- [Cost and latency](/production/cost-and-latency)
+
+## Build
+
+**Lab 04 — Error analysis on a deliberately broken agent**
+
+You are handed an agent that passes 58% of its eval set and a hundred traces. Find the cause. It is one component, and the aggregate score does not tell you which — the failure taxonomy you build does.
+
+## Takeaways this module is built around
+
+1. The aggregate score tells you there is a problem; only the taxonomy tells you what to fix
+2. A judge weaker than the system it grades produces numbers you cannot act on
+3. Cost per *successful* task is the only cost metric worth tracking
+
+## Next
+
+[Module 05 — Planning & multi-agent systems](/modules/05-planning-multi-agent/)
+
+## Sources
+
+- DeepLearning.AI *Agentic AI*, module 4
+- Huyen, *AI Engineering* — evaluation and agent failure modes
+- Zheng et al., *Judging LLM-as-a-Judge* (arXiv:2306.05685)
+- Koenigstein, *AI Agents*, ch. 7
+
+All prose and code original — see [attribution](/references/attribution).

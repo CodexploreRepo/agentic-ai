@@ -1,0 +1,132 @@
+---
+title: "Module 01 — Foundations & the evals mindset"
+description: Tell an agent from a workflow, decompose a task, and prove a change actually helped.
+sidebar_label: 01 · Foundations
+---
+
+# Module 01 — Foundations & the evals mindset
+
+<WatchReadCode
+  read="/foundations/what-is-an-agent"
+  code="labs/01-foundations/01_first_agentic_workflow.ipynb"
+  evals="labs/01-foundations/evals/video_brief_cases.yaml"
+/>
+
+<YouTube title="Module 01 — Foundations of Agentic AI" />
+
+Most agent tutorials open by building an agent. This one opens by asking
+whether you need one, and then insists you measure the answer — because the
+single most useful habit in this field is being able to tell whether a change
+helped.
+
+By the end you will have built a research agent, built the single prompt it is
+supposed to beat, and run both against the same twelve cases to find out
+whether it actually does.
+
+## What you will be able to do
+
+- Tell a **workflow** from an **agent**, and explain why the distinction is about control flow rather than intelligence
+- Place a task on the [autonomy spectrum](/foundations/autonomy-spectrum) and defend the level you chose
+- Decompose a vague job into steps that can be built *and measured*
+- Write a ten-case eval set before writing the system
+- Build a tool-using agent loop with a step limit, a spend ceiling, and a trace
+- Prove — with numbers — whether the agentic version beat a single prompt
+
+## Prerequisites
+
+Python, and an API key for one model provider. See [setup](/start-here/setup).
+No prior agent experience assumed.
+
+## Read
+
+In this order:
+
+1. **[What is an agent?](/foundations/what-is-an-agent)** — the workflow/agent distinction, and what you trade for autonomy
+2. **[The autonomy spectrum](/foundations/autonomy-spectrum)** — five levels, and how to choose
+3. **[Anatomy of an agent](/foundations/anatomy-of-an-agent)** — the five parts and the loop that connects them
+4. **[Task decomposition](/foundations/task-decomposition)** — finding the steps, and the places you can measure
+5. **[Eval-driven development](/evaluation/eval-driven-development)** — why the eval set comes first
+6. **[When not to use agents](/foundations/when-not-to-use-agents)** — the honest counterweight
+
+Reference as you go: the [pattern catalogue](/patterns/) and the
+[glossary](/foundations/glossary).
+
+## Build
+
+**[Lab 01 — your first agentic workflow](https://github.com/CodexploreRepo/agentic-ai/blob/main/labs/01-foundations/01_first_agentic_workflow.ipynb)**
+
+A **video research brief agent**: given a topic, produce a brief that a
+creator could script from — key points, sources, and what is genuinely new.
+
+You build it twice, on purpose:
+
+| | What it is | Why |
+|---|---|---|
+| **Baseline** | One big prompt, no tools | The thing an agent has to beat |
+| **Agentic** | A loop with search and fetch | The thing this module is about |
+
+Then both go through the same eval harness on the same twelve cases, and you
+read the comparison.
+
+```bash
+make lab-01      # open the notebook
+make eval-01     # run the eval set, write a scorecard
+```
+
+:::tip[The point of building both]
+The baseline is not a straw man. On easy topics it often ties, and knowing
+*which* topics need the agent is the actual finding. An agent that beats one
+prompt on four cases out of twelve is a useful result — it tells you to route.
+:::
+
+## The lab also breaks on purpose
+
+Three deliberate failures, because the failure mode is the part you remember:
+
+1. **Remove the step limit** and give the agent a tool that always errors.
+   Watch the budget guard stop a loop that would otherwise run until your
+   credit did.
+2. **Return the tool error as an exception** instead of as text. Watch
+   recovery disappear — the model can fix a call it is told about, and cannot
+   fix one that killed the process.
+3. **Ask for a topic with no good sources.** Watch it produce something
+   fluent and unsupported, and notice that no check except the rubric catches it.
+
+## Evals
+
+[`labs/01-foundations/evals/video_brief_cases.yaml`](https://github.com/CodexploreRepo/agentic-ai/blob/main/labs/01-foundations/evals/video_brief_cases.yaml)
+— twelve cases, tagged by kind:
+
+- `current` — needs information newer than the model's training data
+- `definition` — a concept explained correctly
+- `comparison` — two things weighed against each other
+- `obscure` — deliberately thin sources, to test whether it admits uncertainty
+- `easy` — should obviously work, so you notice if a fix breaks it
+
+Each case carries deterministic checks plus a rubric for the judge. The lab's
+custom check requires **at least two distinct cited URLs**, because the
+failure this module most wants you to see is confident prose with nothing
+behind it.
+
+## Takeaways
+
+1. **Agency is a control-flow decision, not an intelligence upgrade.** You are choosing to let the model pick the path.
+2. **Give away the least autonomy the task needs.** Every degree costs predictability, and predictability is what you will be asked about when something breaks.
+3. **Write the eval set first.** Ten real cases. It takes an hour and it is the difference between engineering and hoping.
+4. **Build the simplest version first.** Sometimes it wins. Finding that out in an hour rather than a fortnight is the whole return on this practice.
+5. **A step limit and a spend ceiling are correctness features**, not safety theatre.
+6. **On twelve cases, a one-case swing is noise.** `compare()` refuses to call it, and so should you.
+
+## Next
+
+[Module 02 — Reflection](/modules/02-reflection/): make the system critique its
+own output, and find out whether the second draft is actually better.
+
+## Sources
+
+- DeepLearning.AI, [*Agentic AI*](https://www.deeplearning.ai/courses/agentic-ai) — this module follows the concept order of its first module
+- Anthropic, *Building Effective Agents*
+- Koenigstein, *AI Agents: The Definitive Guide*, ch. 1–2
+- Yao et al., [*ReAct*](https://arxiv.org/abs/2210.03629)
+
+All prose and code original — see [attribution](/references/attribution).

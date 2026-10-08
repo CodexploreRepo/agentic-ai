@@ -1,0 +1,120 @@
+[project]
+name = "agentic-ai"
+version = "0.1.0"
+description = "A knowledge hub and reference library for building agentic AI systems."
+readme = "README.md"
+requires-python = ">=3.11"
+license = { text = "MIT" }
+authors = [{ name = "CodeXplore" }]
+keywords = ["ai", "agents", "agentic", "llm", "education"]
+
+dependencies = [
+    "anthropic>=0.40",
+    "openai>=1.60",
+    "google-genai>=1.0",
+    "pydantic>=2.9",
+    "pydantic-settings>=2.6",
+    "httpx>=0.27",
+    "pyyaml>=6.0",
+    "rich>=13.9",
+    "tenacity>=9.0",
+]
+
+[project.optional-dependencies]
+# Tools the labs reach for, kept out of the core install so `import agentic_ai`
+# never fails because of a search provider.
+labs = [
+    "tavily-python>=0.5",
+    "beautifulsoup4>=4.12",
+    "markdownify>=0.13",
+    "pandas>=2.2",
+    "matplotlib>=3.9",
+]
+
+[project.urls]
+Homepage = "https://codexplorerepo.github.io/agentic-ai/"
+Repository = "https://github.com/CodexploreRepo/agentic-ai"
+Channel = "https://www.youtube.com/@CodeXplore"
+
+[dependency-groups]
+dev = [
+    "ruff>=0.8",
+    "mypy>=1.13",
+    "pytest>=8.3",
+    "pytest-cov>=6.0",
+    "types-pyyaml>=6.0",
+    "jupyter>=1.1",
+    "nbconvert>=7.16",
+    "nbstripout>=0.8",
+    "pre-commit>=4.0",
+]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/agentic_ai"]
+
+# ---------------------------------------------------------------------------
+[tool.ruff]
+line-length = 100
+target-version = "py311"
+extend-exclude = ["docs-site", "_private", ".runs"]
+
+[tool.ruff.lint]
+select = [
+    "E", "W",   # pycodestyle
+    "F",        # pyflakes
+    "I",        # isort
+    "B",        # bugbear
+    "UP",       # pyupgrade
+    "SIM",      # simplify
+    "RUF",
+    "ANN",      # annotations
+    "D",        # docstrings -- this is teaching code, it should read well
+]
+ignore = [
+    "D104",   # missing docstring in public package
+    "D107",   # __init__ docstring -- the class docstring covers it
+    "D203",   # conflicts with D211
+    "D213",   # conflicts with D212
+    "ANN401", # Any is sometimes the honest type for LLM payloads
+]
+
+[tool.ruff.lint.per-file-ignores]
+"tests/**" = ["D100", "D101", "D102", "D103", "ANN"]
+"tools/**" = ["D103"]
+"labs/**" = ["D", "ANN", "E402"]
+
+[tool.ruff.lint.pydocstyle]
+convention = "google"
+
+# ---------------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.11"
+files = ["src", "tools"]
+strict = true
+warn_unreachable = true
+# Third-party SDKs ship partial stubs; don't fail the build on their internals.
+[[tool.mypy.overrides]]
+module = ["tavily.*", "google.genai.*", "markdownify.*", "bs4.*"]
+ignore_missing_imports = true
+
+# nbformat/nbconvert ship partial annotations, so strict mode flags every call
+# into them as untyped. Skip following them and treat their API as Any.
+[[tool.mypy.overrides]]
+module = ["nbformat.*", "nbconvert.*"]
+ignore_missing_imports = true
+follow_imports = "skip"
+
+# ---------------------------------------------------------------------------
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "-q --strict-markers"
+markers = [
+    "live: hits a real LLM/search API; costs money. Deselected by default.",
+]
+
+[tool.coverage.run]
+source = ["src/agentic_ai"]

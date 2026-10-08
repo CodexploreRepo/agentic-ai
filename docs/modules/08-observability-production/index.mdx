@@ -1,0 +1,63 @@
+---
+title: "Module 08 — Observability & production"
+description: See what your agent did, what it cost, and why last Tuesday was worse.
+sidebar_label: "08 · Observability"
+---
+
+# Module 08 — Observability & production
+
+<WatchReadCode read="/production/observability-and-tracing" />
+
+<YouTube title="Module 08 — Observability & production" />
+
+:::note[Outline]
+This module's brief is written; its pages, lab and eval set land with the
+video. The outcomes and reading list below are firm — useful already if you
+are planning what to study.
+:::
+
+See what your agent did, what it cost, and why last Tuesday was worse.
+
+## What you will be able to do
+
+- Instrument an agent with OpenTelemetry and GenAI semantic conventions
+- Choose what to log, and what never to log, when prompts contain user data
+- Build the dashboard that matters: tool error rate, step distribution, step-limit hits, cost per successful task
+- Turn production traces into tomorrow's eval cases
+- Deploy with shadow runs and a canary gated on the eval set
+
+## Prerequisites
+
+[Module 07](/modules/07-mcp-integrations/) and a working [setup](/start-here/setup).
+
+## Read
+
+- [Observability and tracing](/production/observability-and-tracing)
+- [Architecture](/production/architecture)
+- [Reliability and retries](/production/reliability-and-retries)
+- [Deployment](/production/deployment)
+- [Benchmarks](/evaluation/benchmarks)
+
+## Build
+
+**Lab 08 — From JSONL to a real collector**
+
+Replace this repo's hundred-line tracer with OpenTelemetry, ship spans to a collector, and build the five charts that would have caught each of Module 04's deliberate failures before a user did.
+
+## Takeaways this module is built around
+
+1. Standard APM misses agent failures because nothing crashes
+2. Cost per successful task is the metric; per-token cost hides retries
+3. The loop closes when production traces become eval cases
+
+## Next
+
+[Module 09 — Safety, guardrails & security](/modules/09-safety-security/)
+
+## Sources
+
+- OpenTelemetry GenAI semantic conventions
+- Koenigstein, *AI Agents*, ch. 6-7
+- *Beyond Component Testing* (arXiv:2607.29405)
+
+All prose and code original — see [attribution](/references/attribution).

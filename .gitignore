@@ -1,0 +1,50 @@
+# ---------------------------------------------------------------------------
+# IP guard: course-derived material must NEVER be committed. See ATTRIBUTION.md
+# ---------------------------------------------------------------------------
+_private/
+episodes/*.md
+!episodes/TEMPLATE.md
+
+# Secrets
+.env
+.env.*
+!.env.example
+*.pem
+
+# Python
+__pycache__/
+*.py[cod]
+.venv/
+venv/
+*.egg-info/
+.pytest_cache/
+.ruff_cache/
+.mypy_cache/
+dist/
+build/
+.coverage
+htmlcov/
+
+# Notebooks
+.ipynb_checkpoints/
+
+# Generated docs (nb2md output) + Docusaurus build
+docs/labs/*.md
+!docs/labs/index.md
+docs-site/node_modules/
+docs-site/build/
+docs-site/.docusaurus/
+docs-site/.cache-loader/
+
+# Eval artefacts
+.runs/
+*.scorecard.md
+!docs/**/*.scorecard.md
+
+# OS / editor
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Docusaurus lockfile IS committed (CI uses npm ci) -- nothing to add here.
