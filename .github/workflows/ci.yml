@@ -77,4 +77,6 @@ jobs:
         working-directory: docs-site
         run: |
           npm ci
+          # `build` does not typecheck the TSX components, so do it explicitly.
+          npm run typecheck
           npm run build

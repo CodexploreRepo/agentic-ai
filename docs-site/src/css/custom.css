@@ -181,48 +181,6 @@
   font-size: 0.92rem;
 }
 
-/* --- Status badges ------------------------------------------------------ */
-
-.status-row {
-  display: flex;
-  align-items: center;
-  gap: 0.6rem;
-  margin-top: -0.4rem;
-  font-size: 0.82rem;
-}
-
-.status {
-  padding: 0.15rem 0.55rem;
-  border-radius: 999px;
-  font-weight: 600;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  font-size: 0.7rem;
-}
-
-.status-complete {
-  background: rgba(29, 111, 92, 0.14);
-  color: var(--ifm-color-primary);
-}
-
-.status-draft {
-  background: rgba(195, 135, 20, 0.16);
-  color: #a9761a;
-}
-
-[data-theme='dark'] .status-draft {
-  color: #e0ae4d;
-}
-
-.status-planned {
-  background: rgba(120, 120, 120, 0.16);
-  color: var(--muted);
-}
-
-.status-module {
-  color: var(--muted);
-}
-
 /* Tables carry a lot of this site's decision content; let them breathe. */
 .markdown table {
   display: table;
